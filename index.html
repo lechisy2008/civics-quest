@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#4f46e5">
+<link rel="manifest" href="manifest.webmanifest">
+<title>Civics Quest — Advanced</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#f5f7fb;color:#172033}
+header{background:linear-gradient(135deg,#4338ca,#7c3aed);color:white;padding:22px 18px 18px;position:sticky;top:0;z-index:5}
+h1{margin:0;font-size:27px}.sub{opacity:.9;margin-top:5px}main{max-width:760px;margin:auto;padding:16px}
+.card{background:white;border-radius:22px;padding:22px;box-shadow:0 5px 20px #00000010;margin-bottom:14px}
+.topic{font-weight:800;color:#5b4bdb;text-transform:uppercase;font-size:12px;letter-spacing:.6px}
+.question{font-size:24px;font-weight:800;line-height:1.25;margin:12px 0 18px}
+.answer{background:#eef2ff;border-left:5px solid #6366f1;padding:15px;border-radius:12px;line-height:1.45;font-size:17px}
+button,select,input{font:inherit}button{border:0;border-radius:13px;padding:12px 15px;font-weight:750;cursor:pointer}
+.primary{background:#4f46e5;color:white}.secondary{background:#e9eaf1;color:#222}.danger{background:#fee2e2;color:#991b1b}
+.controls{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px}
+.progress{height:9px;background:#ddd;border-radius:9px;overflow:hidden;margin:10px 0 15px}.bar{height:100%;background:#6366f1;width:0}
+.row{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.option{width:100%;text-align:left;background:#f1f3f8;margin-top:8px}.option.correct{background:#dcfce7;color:#166534}.option.wrong{background:#fee2e2;color:#991b1b}
+.small{font-size:13px;color:#667085}.score{font-size:38px;font-weight:900;color:#4f46e5;text-align:center}
+.hidden{display:none}.pill{background:#e0e7ff;color:#3730a3;padding:5px 9px;border-radius:999px;font-size:12px;font-weight:800}
+footer{text-align:center;padding:25px;color:#667085;font-size:12px}
+@media(max-width:520px){.question{font-size:21px}}
+
+.buttons{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}.buttons a{display:inline-block;text-decoration:none;background:#4f46e5;color:white;border-radius:13px;padding:12px 15px;font-weight:750}.buttons a:nth-child(2){background:#e9eaf1;color:#222}.buttons a:nth-child(3){background:#e9eaf1;color:#222}.option{display:block;width:100%;text-align:left;background:#f1f3f8;margin-top:8px;border:0;border-radius:13px;padding:13px;font-weight:650}.option.correct{background:#dcfce7;color:#166534}.option.wrong{background:#fee2e2;color:#991b1b}.answer{margin-top:12px}.score{font-size:40px;font-weight:900;color:#4f46e5;text-align:center}
+</style></head>
+<body>
+<header><h1>📚 Civics Quest</h1><div class="sub">3rd Grade • Unit 5 Assessment</div></header>
+<main>
+<div class="card">
+<h2 style="margin-top:0">Choose a Study Mode</h2>
+<p class="small">These buttons work without needing an internet connection.</p>
+<div class="buttons">
+<a href="#flashcards" onclick="showFlash();return false;">🃏 Flashcards</a>
+<a href="#quiz" onclick="showQuiz();return false;">🧠 Quiz Me</a>
+<a href="#study" onclick="showStudy();return false;">📖 Study All</a>
+</div>
+</div>
+<section id="app"><article class="card">
+<div class="topic">Flashcards</div>
+<h2 id="fq">What does separation of powers mean?</h2>
+<p id="fa" class="answer hidden">The 3 branches have different powers so no one branch has more control.</p>
+<div class="buttons">
+<a href="#answer" onclick="document.getElementById('fa').classList.toggle('hidden');return false;">👀 Show Answer</a>
+<a href="#next" onclick="nextFlash();return false;">Next →</a>
+</div>
+<p class="small" id="fc">Card 1 of 22</p>
+</article></section>
+</main>
+<footer>Based on the provided Civics & American Government Unit 5 study guide.</footer>
+<script>
+const cards=[{"id": 1, "topic": "Separation of Powers", "q": "What does separation of powers mean?", "a": "The 3 branches have different powers so no one branch has more control."}, {"id": 2, "topic": "Amend the Constitution", "q": "What can the federal government do to the Constitution?", "a": "It can amend the Constitution. AMEND means to change."}, {"id": 3, "topic": "Executive Branch", "q": "Who leads the executive branch?", "a": "The President leads the executive branch."}, {"id": 4, "topic": "Legislative Branch", "q": "What does the legislative branch do?", "a": "The legislative branch makes laws."}, {"id": 5, "topic": "Judicial Branch", "q": "Who leads the judicial branch?", "a": "The U.S. Supreme Court leads the judicial branch."}, {"id": 6, "topic": "Georgia Governor", "q": "What branch of Georgia state government does the Governor lead or work in?", "a": "The Governor is a public official who leads or works in the executive branch of Georgia state government."}, {"id": 7, "topic": "Georgia General Assembly", "q": "What is another name for Georgia's legislative branch?", "a": "The Georgia General Assembly."}, {"id": 8, "topic": "Review a Court Trial", "q": "Which branch can review a Georgia court trial?", "a": "The judicial branch can review a Georgia court trial."}, {"id": 9, "topic": "Fair Laws", "q": "Which branch determines if laws are fair?", "a": "The judicial branch."}, {"id": 10, "topic": "Enforce Laws", "q": "What is the main responsibility of the U.S. executive branch?", "a": "To enforce laws."}, {"id": 11, "topic": "What Does Enforce Mean?", "q": "What does it mean to enforce a law?", "a": "It means to make the law happen, such as through leaders and money."}, {"id": 12, "topic": "Federal and State Laws", "q": "Where does the legislative branch make laws?", "a": "At the national/federal and state levels."}, {"id": 13, "topic": "Common Good", "q": "What does common good mean?", "a": "Promoting what is best for MOST people."}, {"id": 14, "topic": "Laws and the Common Good", "q": "What should laws that promote the common good do?", "a": "They should protect rights and help those in need."}, {"id": 15, "topic": "Volunteering", "q": "What is volunteering?", "a": "Giving your time to help others without being paid."}, {"id": 16, "topic": "Volunteer Benefit", "q": "How can volunteering help a community?", "a": "It can make the community a better place."}, {"id": 17, "topic": "Learn and Meet People", "q": "What is another benefit of volunteering?", "a": "It gives opportunities to learn, meet people, and improve yourself."}, {"id": 18, "topic": "Making a Difference", "q": "How can volunteering make you feel?", "a": "It can give you satisfaction from making a difference."}, {"id": 19, "topic": "Voting at 18", "q": "What can Bruno do when he is 18?", "a": "He can vote for people who listen to the community."}, {"id": 20, "topic": "Who Can Vote?", "q": "Who can vote according to the study guide?", "a": "Only people 18 and older can vote."}, {"id": 21, "topic": "Register to Vote", "q": "What should a person do to vote at 18?", "a": "Register or sign up to vote."}, {"id": 22, "topic": "Dog Park", "q": "What problem are Lawrenceville citizens solving when they want a new dog park?", "a": "They are solving a community problem."}];
+let flashIndex=0, quizIndex=0, quizScore=0, quizOrder=[];
+function showFlash(){
+ const c=cards[flashIndex];
+ document.getElementById('app').innerHTML='<article class="card"><div class="topic">Flashcards</div><h2>'+c.q+'</h2><p id="fa" class="answer hidden">'+c.a+'</p><div class="buttons"><a href="#answer" onclick="document.getElementById(\'fa\').classList.toggle(\'hidden\');return false;">👀 Show Answer</a><a href="#next" onclick="nextFlash();return false;">Next →</a></div><p class="small">Card '+(flashIndex+1)+' of '+cards.length+'</p></article>';
+}
+function nextFlash(){flashIndex=(flashIndex+1)%cards.length;showFlash();}
+function showStudy(){
+ let h='<article class="card"><div class="topic">Study All</div><h2>📖 All 22 Study Questions</h2><p class="small">Tap each question to reveal the answer.</p></article>';
+ h += "<article class=\"card\">\n<div class=\"topic\">1. Separation of Powers</div>\n<h2>What does separation of powers mean?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The 3 branches have different powers so no one branch has more control.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">2. Amend the Constitution</div>\n<h2>What can the federal government do to the Constitution?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">It can amend the Constitution. AMEND means to change.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">3. Executive Branch</div>\n<h2>Who leads the executive branch?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The President leads the executive branch.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">4. Legislative Branch</div>\n<h2>What does the legislative branch do?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The legislative branch makes laws.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">5. Judicial Branch</div>\n<h2>Who leads the judicial branch?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The U.S. Supreme Court leads the judicial branch.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">6. Georgia Governor</div>\n<h2>What branch of Georgia state government does the Governor lead or work in?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The Governor is a public official who leads or works in the executive branch of Georgia state government.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">7. Georgia General Assembly</div>\n<h2>What is another name for Georgia's legislative branch?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The Georgia General Assembly.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">8. Review a Court Trial</div>\n<h2>Which branch can review a Georgia court trial?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The judicial branch can review a Georgia court trial.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">9. Fair Laws</div>\n<h2>Which branch determines if laws are fair?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">The judicial branch.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">10. Enforce Laws</div>\n<h2>What is the main responsibility of the U.S. executive branch?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">To enforce laws.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">11. What Does Enforce Mean?</div>\n<h2>What does it mean to enforce a law?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">It means to make the law happen, such as through leaders and money.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">12. Federal and State Laws</div>\n<h2>Where does the legislative branch make laws?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">At the national/federal and state levels.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">13. Common Good</div>\n<h2>What does common good mean?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">Promoting what is best for MOST people.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">14. Laws and the Common Good</div>\n<h2>What should laws that promote the common good do?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">They should protect rights and help those in need.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">15. Volunteering</div>\n<h2>What is volunteering?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">Giving your time to help others without being paid.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">16. Volunteer Benefit</div>\n<h2>How can volunteering help a community?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">It can make the community a better place.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">17. Learn and Meet People</div>\n<h2>What is another benefit of volunteering?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">It gives opportunities to learn, meet people, and improve yourself.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">18. Making a Difference</div>\n<h2>How can volunteering make you feel?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">It can give you satisfaction from making a difference.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">19. Voting at 18</div>\n<h2>What can Bruno do when he is 18?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">He can vote for people who listen to the community.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">20. Who Can Vote?</div>\n<h2>Who can vote according to the study guide?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">Only people 18 and older can vote.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">21. Register to Vote</div>\n<h2>What should a person do to vote at 18?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">Register or sign up to vote.</p></details>\n</article><article class=\"card\">\n<div class=\"topic\">22. Dog Park</div>\n<h2>What problem are Lawrenceville citizens solving when they want a new dog park?</h2>\n<details><summary>Show Answer</summary><p class=\"answer\">They are solving a community problem.</p></details>\n</article>";
+ document.getElementById('app').innerHTML=h;
+}
+function showQuiz(){
+ quizOrder=[...cards].sort(()=>Math.random()-.5);quizIndex=0;quizScore=0;renderQuiz();
+}
+function renderQuiz(){
+ const c=quizOrder[quizIndex];
+ const opts=[c.a,...cards.filter(x=>x.id!==c.id).sort(()=>Math.random()-.5).slice(0,3).map(x=>x.a)].sort(()=>Math.random()-.5);
+ let h='<article class="card"><div class="topic">Quiz</div><h2>'+c.q+'</h2><p class="small">Question '+(quizIndex+1)+' of '+cards.length+'</p>';
+ opts.forEach((o,j)=>{h+='<button class="option" onclick="pickQuiz(this,'+JSON.stringify(o===c.a)+')">'+o+'</button>';})
+ h+='<p id="feedback" class="small"></p></article>';document.getElementById('app').innerHTML=h;
+}
+function pickQuiz(btn,ok){
+ document.querySelectorAll('.option').forEach(x=>x.disabled=true);
+ btn.classList.add(ok?'correct':'wrong');
+ document.getElementById('feedback').textContent=ok?'✅ Correct!':'❌ Not quite. Try the next question.';
+ if(ok)quizScore++;
+ setTimeout(()=>{quizIndex++;if(quizIndex>=quizOrder.length){document.getElementById('app').innerHTML='<article class="card"><div class="score">'+quizScore+' / '+cards.length+'</div><h2 style="text-align:center">Quiz Complete 🎉</h2><div class="buttons" style="justify-content:center"><a href="#again" onclick="showQuiz();return false;">Try Again</a><a href="#flash" onclick="showFlash();return false;">Flashcards</a></div></article>';}else renderQuiz();},600);
+}
+showFlash();
+</script>
+</body></html>

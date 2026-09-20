@@ -1,0 +1,9 @@
+{
+  "name": "Civics Quest — 3rd Grade",
+  "short_name": "Civics Quest",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f5f7fb",
+  "theme_color": "#4f46e5",
+  "description": "Interactive Unit 5 civics study app"
+}
